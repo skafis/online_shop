@@ -28,4 +28,17 @@ class Product(models.Model):
 							db_index=True)
 	image = models.ImageField(upload_to='products/%Y/%m/%d',
 							blank=True)
-	description = models.TextField(max_digits=10)
+	description = models.TextField(blank=True)
+	price = models.DecimalField(max_digits=10,
+								decimal_places=2)
+	stocks=models.PositiveIntegerField()
+	available = models.BooleanField(default=True)
+	created = models.DateTimeField(auto_now_add = True)
+	updated= models.DateTimeField(auto_now=True)
+
+	class Meta:
+		ordering = ('name',)
+		index_together = (('id','slug'),)
+
+	def __st__(self):
+		return self.name
