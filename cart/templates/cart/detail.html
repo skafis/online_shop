@@ -22,11 +22,18 @@
 				<tr>
 					<td>
 						<a href="{{product.get_absolute_url}}">
-							<img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/no_image.png' %}{% endif %}">
+							<img src="{% if product.image %} {{ product.image.url }} {% else %} http://placehold.it/200x200 {% endif %}">
 						</a>
 					</td>
 					<td>{{ prduct.name}} </td>
-					<td>{{ item.quantity }}</td>
+					<td>
+					<form action="{% url 'cart:cart_add' product.id %}" method="post">
+						{{ item.update_quantity_form.quantity }}
+						{{ item.update_quantity_form.update }}
+						<input type="submit" value="update">
+						{% csrf_token %}
+					</form>
+					</td>
 					<td> <a href="{% url 'cart:cart_remove' product.id %}">
 						remove
 					</a>
