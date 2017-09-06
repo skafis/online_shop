@@ -29,17 +29,26 @@
 		
 		<div id="subheader">
 			<div class="cart">
-				Your cart is empty
-			</div>
+				{% with total_items=cart|length %}
+				{% if cart|length > 0 %}
+					your cart:
+					<a href="{% url 'cart:cart_detail' %}">
+						{{ total_items }} item{{ total_items | pluralize }},
+					${{ cart.get_total_price }}</a>
+				{% else %}
+					your cart is empty
+				{% endif %}
+			{% endwith %}
 		</div>
-		<div id="content">
-			{% block content %}
-			{% endblock%}
-		</div>
-		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-		<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-		<script>
-		$(document).foundation();
-		</script>
-	</body>
+	</div>
+	<div id="content">
+		{% block content %}
+		{% endblock%}
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script>
+	$(document).foundation();
+	</script>
+</body>
 </html>
