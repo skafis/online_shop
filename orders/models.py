@@ -22,7 +22,7 @@ class Order(models.Model):
 	def __str__(self):
 		return 'Order {}'.format(self.id)
 
-class Orderitem(models.Model):
+class OrderItem(models.Model):
 	order = models.ForeignKey(Order, related_name='items')
 	product = models.ForeignKey(Product,
 								related_name='order_items')
