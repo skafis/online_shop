@@ -26,8 +26,6 @@ SECRET_KEY = 'agsk1c-5=33q7r$=5zcxp01dli%b@5=34lxs&6*au)5%=nk@q9'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
